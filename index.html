@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mary Drew: Ключи</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        input[type="text"] {
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            width: 200px;
+            text-align: center;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            font-size: 1.1rem;
+            cursor: pointer;
+            background-color: #444;
+            color: white;
+            border: none;
+        }
+        img {
+            max-width: 100%;
+            margin-top: 1rem;
+            border: 2px solid #888;
+        }
+        .message {
+            margin-top: 1rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mary Drew: Введи код</h1>
+    <input type="text" id="codeInput" placeholder="Введите код" />
+    <button onclick="checkCode()">Проверить</button>
+    <div id="result"></div>
+
+    <script>
+        const codes = {
+            "1947": { img: "img1.jpg", msg: "Поищи под пледом. Там — первый след." },
+            "2807": { img: "img2.jpg", msg: "Отражение подскажет. Загляни в зеркало." },
+            "1845": { img: "img3.jpg", msg: "Место, где ты хранишь маршруты — твоя цель." },
+            "kotik": { img: "img4.jpg", msg: "Там, где начинается твой день, — последний ключ." }
+        };
+
+        function checkCode() {
+            const code = document.getElementById("codeInput").value.trim();
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "";
+
+            if (codes[code]) {
+                const entry = codes[code];
+                const img = document.createElement("img");
+                img.src = entry.img;
+                const msg = document.createElement("div");
+                msg.className = "message";
+                msg.textContent = entry.msg;
+                resultDiv.appendChild(img);
+                resultDiv.appendChild(msg);
+            } else {
+                resultDiv.textContent = "Неверный код. Попробуй снова.";
+            }
+        }
+    </script>
+</body>
+</html>
